@@ -1,0 +1,128 @@
+﻿<Window x:Class="Navigator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Navigator"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Closed="Window_Closed"
+        Title="Project 4" Height="750" Width="750" Loaded="Window_Loaded">
+    <Window.Resources>
+        <!-- 
+    /////////////////////////////////////////////////////////////////////////
+    // NavigatorClient.xaml - Demonstrates Directory Navigation in WPF App //
+    // ver 2.0                                                             //
+    // Jim Fawcett, CSE681 - Software Modeling and Analysis, Fall 2017     //
+    /////////////////////////////////////////////////////////////////////////
+    -->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border Padding="10" Background="#ddd" BorderThickness="0 4 0 0" BorderBrush="DarkSlateBlue">
+            <TabControl>
+                <TabItem Name="Local" Header="Navigation">
+                    <!--- define top-level grid with four cells: local files & dirs, and remote files & dirs -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- define local files view -->
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                <Label Height="30">Local Dirs</Label>
+                                <Label Width="10"></Label>
+                                <Button Name="localUp" Width="40" Height="25" Click="localUp_Click">Up</Button>
+                            </StackPanel>
+                            <ListBox Grid.Row="1" Name="localDirs" MouseDoubleClick="localDirs_MouseDoubleClick">
+                                <TextBlock Name ="textBlock" TextWrapping="Wrap" Text="TextBlock"/>
+                            </ListBox>
+
+                        </Grid>
+
+                        <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" Background="#ddd"></GridSplitter>
+
+                        <!-- define local dirs view -->
+                        <Grid Grid.Column="0" Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                <Label Height="30">Selected Files</Label>
+                            </StackPanel>
+                            <ListBox Grid.Row="1" Name="selectedFiles"></ListBox>
+
+                        </Grid>
+
+                        <!-- define remote files view -->
+                        <Grid Grid.Column="2" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                <Label Height="30" x:Name="localFilesLabel" Foreground="DarkSlateBlue" FontWeight="bold">Local Files</Label>
+                                <Label Width="10"></Label>
+                                <Button Name="localTop" Width="40" Height="25" Click="localTop_Click">Top</Button>
+                            </StackPanel>
+                            <ListBox Grid.Row="1" x:Name="localFiles" MouseDoubleClick="localFiles_MouseDoubleClick"></ListBox>
+                        </Grid>
+
+                        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Stretch" Background="#ddd"></GridSplitter>
+
+                        <!-- define remote dirs view -->
+                        <Grid Grid.Column="2" Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                <Label Height="30">Do Tests</Label>
+                            </StackPanel>
+                            <ListBox Grid.Row="1" Name="testList">
+                                <Button Name="token" Width="150" Height="30"  Click="tokens_Click">Token</Button>
+                                <Button Name="semi" Width="150" Height="30"  Click="semi_Click">Semi Expression</Button>
+                                <Button Name="typeTable" Width="150" Height="30"  Click="typeTable_Click">Type Table</Button>
+                                <Button Name="dependencyTable" Width="150" Height="30" Click="dependencyTable_Click">Dependency Table</Button>
+                                <Button Name="graph" Width="150" Height="30" Click="graph_Click">Graph</Button>
+                                <Button Name="strongComponents" Width="150" Height="30" Click="strongComponents_Click">Strong Components</Button> 
+                            </ListBox>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>

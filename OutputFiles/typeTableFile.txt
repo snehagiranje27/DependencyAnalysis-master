@@ -1,0 +1,5 @@
+category 	 name 	 file
+-------- 	 ----- 	 -----
+namespace	namespace3	File3.cs
+delegate	void	File3.cs
+class	File3	File3.cs
